@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextClock
 import android.widget.TextView
 
 class Calcular : Fragment() {
@@ -21,11 +20,23 @@ class Calcular : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val vista = inflater.inflate(R.layout.fragment_calcular, container, false)
+        edt1 = vista.findViewById(R.id.edt1)
+        edt2 = vista.findViewById(R.id.edt2)
+        sumar = vista.findViewById(R.id.sumar)
+        tv = vista.findViewById(R.id.tv)
 
+        sumar.setOnClickListener {
+            if(edt1.text.isNotEmpty() && edt2.text.isNotEmpty())
+                tv.text = suma(edt1.text.toString().toInt(), edt2.text.toString().toInt())
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calcular, container, false)
+        }
+
+        return vista
     }
 
+    private fun suma(x: Int, y: Int): String {
+        return (x + y).toString()
+    }
 
 }
